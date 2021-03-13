@@ -1,5 +1,7 @@
 {
   "name": "mi-primer-banco",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
