@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Cuenta
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-text class="ion-text-center">
+        <p><ion-label class="bold">Cuenta de {{account?.type}}</ion-label></p>
+        <p><ion-label>Número de cuenta: {{account?.accountNumber}}</ion-label></p>
+        <p><ion-label>Saldo: {{ account?.balance | currency: 'COP':'symbol-narrow'}}</ion-label></p>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content class="ion-no-padding">
+      <ion-item lines="none">
+        <ion-label>Mis movimientos: </ion-label>
+      </ion-item>
+      <ion-list class="ion-no-padding">
+        <ion-item *ngFor="let transaction of transactions" lines="none">
+          <ion-grid class="ion-no-padding ion-margin-top">
+            <ion-row>
+              <ion-col size="6">
+                <ion-text>
+                  <p><ion-label class="bold" color="primary">{{transaction?.name}}</ion-label></p>
+                  <p><ion-label>{{transaction?.date}}</ion-label></p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="6" class="ion-text-end">
+                <ion-label [color]="transaction?.type == '+' ? '' : 'danger'" >{{transaction?.value | currency: 'COP':'symbol-narrow'}}</ion-label>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

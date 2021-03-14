@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Registrar cuenta
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment (ionChange)="segmentChanged($event)" [value]="type">
+    <ion-segment-button value="personalAccount">
+      <ion-label>Personal</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="thirdPartyAccount">
+      <ion-label>De Tercero</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <section>
+    <form [formGroup]="formAccountPersonal" ons>
+      <ion-item>
+        <ion-label position="floating">Alias</ion-label>
+        <ion-input formControlName="alias" ngDefaultControl></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Número de cuenta</ion-label>
+        <ion-input formControlName="accountNumber" ngDefaultControl></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Saldo</ion-label>
+        <ion-input formControlName="balance" ngDefaultControl></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tipo de cuenta</ion-label>
+        <ion-select formControlName="type" ngDefaultControl placeholder="Selecciones una opcion" required>
+          <ion-select-option value="ahorro">Ahorro</ion-select-option>
+          <ion-select-option value="corriente">Corriente</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button class="ion-margin-top" (click)="registerAccount()" expand="block" shape="round">Registrar</ion-button>
+    </form>
+  </section>
+
+</ion-content>

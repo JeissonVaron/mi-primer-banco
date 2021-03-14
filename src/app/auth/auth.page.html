@@ -33,8 +33,14 @@
 
         </section>
         <ion-button class="ion-margin-top" (click)="onSubmit()" expand="block" shape="round">
-          {{ logIn ? 'Iniciar sesion' : 'Registrarme' }}
+          
+          <span [hidden]="loading">{{ logIn ? 'Iniciar sesion' : 'Registrarme' }}</span>
+          <ion-spinner [hidden]="!loading" name="crescent"></ion-spinner>
         </ion-button>
+
+        <!-- <ion-button [routerLink]="['/dashboard']" expand="block" shape="round">
+          Click me
+        </ion-button> -->
       </form>
     </ion-card-content>
   </ion-card>

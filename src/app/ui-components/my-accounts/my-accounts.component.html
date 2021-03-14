@@ -1,0 +1,40 @@
+<ion-card>
+  <ion-card-header class="ion-no-padding">
+    <ion-item color="primary">
+      
+      <ion-buttons slot="end">
+        <ion-button (click)="newAccount()">
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-label>Mis cuentas</ion-label>
+    </ion-item>
+  </ion-card-header>
+  <ion-card-content class="ion-no-padding">
+    <ion-card *ngFor="let account of accounts; let i = index" [hidden]="i > 1">
+      <ion-card-content>
+        <ion-grid class="ion-no-padding">
+          <ion-row>
+            <ion-col size="9">
+              <ion-text>
+                <p><ion-label color="primary">Cuenta de {{account?.type}}</ion-label></p>
+                <p><ion-label>Saldo: {{ account?.balance | currency: 'COP':'symbol-narrow'}}</ion-label></p>
+              </ion-text>
+            </ion-col>
+            <ion-col size="3">
+              <ion-button (click)="seeDetail(account)" fill="clear">
+                <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+    <ion-item *ngIf="accounts?.length" class="ion-text-center" lines="none" [routerLink]="['/dashboard/accounts']">
+      <ion-label color="primary">Ver todas las cuentas</ion-label>
+    </ion-item>
+    <ion-item lines="none" *ngIf="!accounts?.length">
+      <ion-label>Actualmente no tienes cuentas registradas</ion-label>
+    </ion-item>
+  </ion-card-content>
+</ion-card>
